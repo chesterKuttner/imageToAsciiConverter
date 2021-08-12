@@ -4,7 +4,7 @@ import numpy as np
 #matploplib inline
 from math import floor
 
-img= Image.open('image.png')
+img= Image.open('image.jpg')
 # height=int(input('GIVE ME HEIGHT... please:'))
 # width=int(input('and width UwU:'))
 height=100
@@ -12,14 +12,10 @@ width=100
 rez=(height,width)
 img=img.resize(rez)
 img=img.convert('LA')
-img.show()
 # img.show()
 grid=[]
 
-chars=[' ','.','/','#','6','Q']
-
-
-
+chars=[' ','.',',','-',':','+','=','/','(',')','#','6','Q']
 
 for y in range(1,height):
     row=[]
@@ -35,12 +31,10 @@ for element in grid:
             chosenCombinations.append(e)
 chosenCombinations.sort()
 
-print(chosenCombinations)
 darkest=chosenCombinations[len(chosenCombinations)-1]
 lightest=chosenCombinations[0]
 
 interval=(darkest-lightest)/(len(chars)-1)
-print(interval)
 charGrid=[]
 for element in grid:
     charRow=''
