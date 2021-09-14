@@ -4,7 +4,7 @@ import numpy as np
 #matploplib inline
 from math import floor
 
-img= Image.open('image.jpg')
+img= Image.open('image.jpeg')
 # height=int(input('GIVE ME HEIGHT... please:'))
 # width=int(input('and width UwU:'))
 height=100
@@ -12,10 +12,13 @@ width=100
 rez=(height,width)
 img=img.resize(rez)
 img=img.convert('LA')
+
 # img.show()
 grid=[]
-
-chars=[' ','.',',','-',':','+','=','/','(',')','#','6','Q']
+# chars= "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1[]?-_+~<>i!lI;:,^`'."
+# chars=list(chars)
+# chars.reverse()
+chars=[' ','.',',','_','-','*',':','+','=','!','?','{','}','(',')','/','&','#','%','@','m','w','U','N','W','M','Q']
 
 for y in range(1,height):
     row=[]
