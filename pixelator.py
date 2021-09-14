@@ -8,6 +8,12 @@ width = img.width
 
 #not my code https://github.com/python/cpython/blob/3.9/Lib/colorsys.py
 def rgb_to_hls(r, g, b):
+    if r==0:
+        r=1
+    if g==0:
+        g=1
+    if b==0:
+        b=1
     maxc = max(r, g, b)
     minc = min(r, g, b)
     # XXX Can optimize (maxc+minc) and (maxc-minc)
@@ -29,8 +35,14 @@ def rgb_to_hls(r, g, b):
         h = 4.0+gc-rc
     h = (h/6.0) % 1.0
     return h, l, s
-#not my code https://github.com/python/cpython/blob/3.9/Lib/colorsys.py
+#not my code https://github.com/python/cpython/blob/3.9/Lib/colorsys.py with edits (kept getting devide by zero errors)
 def rgb_to_hsv(r, g, b):
+    if r==0:
+        r=1
+    if g==0:
+        g=1
+    if b==0:
+        b=1
     maxc = max(r, g, b)
     minc = min(r, g, b)
     v = maxc
@@ -206,7 +218,7 @@ allColours = [(139, 0, 0),
               (245, 245, 245),
               (255, 255, 255)]
 coreColours = []
-r = 1.5
+r = 10
 
 for i in range(0, floor(len(allColours)/r)):
     coreColours.append(allColours[round(i*r)])
@@ -222,7 +234,7 @@ for coreColour in coreColours:
         show = round(i/iTop*100)
         print(show,'%')
     for imgColour in grid:
-        if colourInRange(coreColour, imgColour[1], 2*r):
+        if colourInRange(coreColour, imgColour[1], r):
             img.putpixel(imgColour[0], coreColour)
             grid.pop(grid.index(imgColour))
     if len(grid) == 0:
