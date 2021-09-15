@@ -2,7 +2,7 @@ from PIL import Image
 import numpy as np
 from math import floor
 
-img = Image.open('image.jpg')
+img = Image.open('image.png')
 height = img.height
 width = img.width
 
@@ -63,13 +63,23 @@ def rgb_to_hsv(r, g, b):
 
 
 def colourInRange(colour1, colour2, range):
+    bCompare=False
     c1=rgb_to_hls(*colour1)
     c2=rgb_to_hls(*colour2)
 
     if ((c2[0]-range) < c1[0] < (c2[0]+range)) and ((c2[1]-range) < c1[1] < (c2[1]+range)) and ((c2[2]-range) < c1[2] < (c2[2]+range)):
-        return True
+        bCompare= True
     else:
-        return False
+        bCompare= False
+    
+    # c1=rgb_to_hsv(*colour1)
+    # c2=rgb_to_hsv(*colour2)
+
+    # if ((c2[0]-range) < c1[0] < (c2[0]+range)) and ((c2[1]-range) < c1[1] < (c2[1]+range)) and ((c2[2]-range) < c1[2] < (c2[2]+range)):
+    #     bCompare= True
+    # else:
+    #     bCompare= False
+    return bCompare
 
 
 grid = []
@@ -238,6 +248,7 @@ for coreColour in coreColours:
             img.putpixel(imgColour[0], coreColour)
             grid.pop(grid.index(imgColour))
     if len(grid) == 0:
-        break
+        img.show()
+        exit
 
 img.show()
